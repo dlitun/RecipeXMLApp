@@ -9,6 +9,16 @@ import com.example.recipesapp.databinding.FragmentRecipesListBinding
 
 class RecipesListFragment : Fragment() {
 
+    companion object {
+        const val ARG_CATEGORY_ID = "ARG_CATEGORY_ID"
+        const val ARG_CATEGORY_NAME = "ARG_CATEGORY_NAME"
+        const val ARG_CATEGORY_IMAGE_URL = "ARG_CATEGORY_IMAGE_URL"
+    }
+
+    private var categoryId: Int? = null
+    private var categoryName: String? = null
+    private var categoryImageUrl: String? = null
+
     private var _binding: FragmentRecipesListBinding? = null
     private val binding get() = _binding ?: error("FragmentRecipesListBinding is null")
 
@@ -19,6 +29,13 @@ class RecipesListFragment : Fragment() {
     ): View {
         _binding = FragmentRecipesListBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        categoryId = arguments?.getInt(ARG_CATEGORY_ID)
+        categoryName = arguments?.getString(ARG_CATEGORY_NAME)
+        categoryImageUrl = arguments?.getString(ARG_CATEGORY_IMAGE_URL)
     }
 
     override fun onDestroyView() {
