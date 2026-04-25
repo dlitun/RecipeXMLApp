@@ -3,8 +3,11 @@
 
     <string name="title_categories">Категории</string>
     <string name="title_favorites">Избранное</string>
+    <string name="title_recipes">Рецепты</string>
 
     <string name="categories_header_image">Изображение заголовка экрана категорий</string>
+    <string name="recipes_header_image">Изображение заголовка экрана рецептов</string>
     <string name="category_image">Изображение категории</string>
+    <string name="recipe_image">Изображение рецепта</string>
 
 </resources>
