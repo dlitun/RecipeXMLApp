@@ -13,6 +13,7 @@
 
     <dimen name="header_height">220dp</dimen>
     <dimen name="category_image_height">130dp</dimen>
+    <dimen name="recipe_image_height">170dp</dimen>
 
     <dimen name="text_20">20sp</dimen>
     <dimen name="text_14">14sp</dimen>
