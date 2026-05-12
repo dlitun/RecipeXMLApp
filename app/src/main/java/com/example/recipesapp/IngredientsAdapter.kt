@@ -24,8 +24,26 @@ class IngredientsAdapter(
         val item = dataSet[position]
         holder.binding.tvIngredientTitle.text = item.description
         holder.binding.tvIngredientAmount.text = "${item.quantity} ${item.unitOfMeasure}"
+
+        val resources = holder.itemView.resources
+        val topPadding = if (position == 0) {
+            resources.getDimensionPixelSize(R.dimen.spacing_12)
+        } else {
+            resources.getDimensionPixelSize(R.dimen.spacing_8)
+        }
+        val bottomPadding = if (position == dataSet.lastIndex) {
+            resources.getDimensionPixelSize(R.dimen.spacing_12)
+        } else {
+            resources.getDimensionPixelSize(R.dimen.spacing_8)
+        }
+
+        holder.itemView.setPadding(
+            holder.itemView.paddingLeft,
+            topPadding,
+            holder.itemView.paddingRight,
+            bottomPadding
+        )
     }
 
     override fun getItemCount(): Int = dataSet.size
 }
-

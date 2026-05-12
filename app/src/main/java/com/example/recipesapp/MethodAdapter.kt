@@ -21,10 +21,27 @@ class MethodAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.tvMethodStepNumber.text = "${position + 1}."
-        holder.binding.tvMethodStepText.text = dataSet[position]
+        holder.binding.tvMethodStepText.text = "${position + 1}. ${dataSet[position]}"
+
+        val resources = holder.itemView.resources
+        val topPadding = if (position == 0) {
+            resources.getDimensionPixelSize(R.dimen.spacing_12)
+        } else {
+            resources.getDimensionPixelSize(R.dimen.spacing_8)
+        }
+        val bottomPadding = if (position == dataSet.lastIndex) {
+            resources.getDimensionPixelSize(R.dimen.spacing_12)
+        } else {
+            resources.getDimensionPixelSize(R.dimen.spacing_8)
+        }
+
+        holder.itemView.setPadding(
+            holder.itemView.paddingLeft,
+            topPadding,
+            holder.itemView.paddingRight,
+            bottomPadding
+        )
     }
 
     override fun getItemCount(): Int = dataSet.size
 }
-

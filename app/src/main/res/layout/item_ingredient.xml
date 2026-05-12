@@ -7,20 +7,20 @@
     android:gravity="center_vertical"
     android:minHeight="@dimen/spacing_48"
     android:orientation="horizontal"
-    android:paddingVertical="@dimen/spacing_12">
+    android:paddingHorizontal="@dimen/spacing_12"
+    android:paddingVertical="@dimen/spacing_8">
 
     <TextView
         android:id="@+id/tvIngredientTitle"
-        style="@style/StyleCategoryDescription"
+        style="@style/StyleRecipeIngredientText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textColor="@color/text_primary"
         tools:text="Творог" />
 
     <TextView
         android:id="@+id/tvIngredientAmount"
-        style="@style/StyleCategoryDescription"
+        style="@style/StyleRecipeIngredientText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_12"

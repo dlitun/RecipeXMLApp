@@ -7,7 +7,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.databinding.FragmentRecipeBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
 
@@ -65,17 +67,22 @@ class RecipeFragment : Fragment() {
         binding.rvIngredients.adapter = IngredientsAdapter(recipeData.ingredients)
         binding.rvMethod.adapter = MethodAdapter(recipeData.method)
 
-        addDividerIfNeeded(binding.rvIngredients)
-        addDividerIfNeeded(binding.rvMethod)
+        addDivider(binding.rvIngredients)
+        addDivider(binding.rvMethod)
     }
 
-    private fun addDividerIfNeeded(recyclerView: androidx.recyclerview.widget.RecyclerView) {
-        if (recyclerView.itemDecorationCount > 0) return
-
+    private fun addDivider(recyclerView: RecyclerView) {
         val divider = MaterialDividerItemDecoration(
             requireContext(),
             MaterialDividerItemDecoration.VERTICAL
-        )
+        ).apply {
+            dividerColor = ContextCompat.getColor(requireContext(), R.color.text_secondary)
+            dividerThickness = resources.getDimensionPixelSize(R.dimen.spacing_1)
+            dividerInsetStart = resources.getDimensionPixelSize(R.dimen.spacing_12)
+            dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.spacing_12)
+            isLastItemDecorated = false
+        }
+
         recyclerView.addItemDecoration(divider)
     }
 
