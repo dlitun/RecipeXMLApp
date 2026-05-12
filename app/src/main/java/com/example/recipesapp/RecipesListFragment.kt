@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
@@ -75,9 +74,10 @@ class RecipesListFragment : Fragment() {
 
     private fun openRecipeByRecipeId(recipeId: Int) {
         val recipe = STUB.getRecipeById(recipeId) ?: return
-        val bundle = bundleOf(RecipeFragment.ARG_RECIPE to recipe)
+        val bundle = Bundle().apply {
+            putParcelable(RecipeFragment.ARG_RECIPE, recipe)
+        }
 
-        Log.d("RecipesListFragment", "Open recipeId=$recipeId")
         parentFragmentManager.commit {
             setReorderingAllowed(true)
             replace<RecipeFragment>(R.id.mainContainer, args = bundle)
