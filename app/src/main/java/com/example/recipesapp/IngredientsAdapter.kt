@@ -5,10 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.databinding.ItemIngredientBinding
+import java.util.Locale
 
 class IngredientsAdapter(
     private val dataSet: List<Ingredient>
 ) : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
+
+    private var quantity = 1
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: ItemIngredientBinding = ItemIngredientBinding.bind(itemView)
@@ -23,7 +26,13 @@ class IngredientsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataSet[position]
         holder.binding.tvIngredientTitle.text = item.description
-        holder.binding.tvIngredientAmount.text = "${item.quantity} ${item.unitOfMeasure}"
+        val calculatedQuantity = item.quantity.toDouble() * quantity
+        val formattedQuantity = if (calculatedQuantity == calculatedQuantity.toLong().toDouble()) {
+            calculatedQuantity.toLong().toString()
+        } else {
+            String.format(Locale.US, "%.1f", calculatedQuantity)
+        }
+        holder.binding.tvIngredientAmount.text = "$formattedQuantity ${item.unitOfMeasure}"
 
         val resources = holder.itemView.resources
         val topPadding = if (position == 0) {
@@ -43,6 +52,11 @@ class IngredientsAdapter(
             holder.itemView.paddingRight,
             bottomPadding
         )
+    }
+
+    fun updateIngredients(progress: Int) {
+        quantity = progress
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = dataSet.size
