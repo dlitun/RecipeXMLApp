@@ -20,7 +20,7 @@
             android:layout_height="0dp"
             android:contentDescription="@string/categories_header_image"
             android:scaleType="centerCrop"
-            android:src="@drawable/bg_categories_header"
+            android:src="@drawable/bcg_categories"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

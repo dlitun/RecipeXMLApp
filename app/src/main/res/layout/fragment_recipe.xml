@@ -51,7 +51,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_16"
             android:layout_marginTop="@dimen/spacing_16"
-            android:padding="@dimen/spacing_10"
             android:text="@string/title_ingredients" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -60,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_16"
             android:layout_marginTop="@dimen/spacing_8"
-            android:background="@drawable/bg_header_title"
+            android:background="@drawable/bg_recipe_list"
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -74,7 +73,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_16"
             android:layout_marginTop="@dimen/spacing_16"
-            android:padding="@dimen/spacing_10"
             android:text="@string/title_method" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -84,7 +82,7 @@
             android:layout_marginHorizontal="@dimen/spacing_16"
             android:layout_marginTop="@dimen/spacing_8"
             android:layout_marginBottom="@dimen/spacing_16"
-            android:background="@drawable/bg_header_title"
+            android:background="@drawable/bg_recipe_list"
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
