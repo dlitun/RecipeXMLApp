@@ -11,6 +11,9 @@
 
     <dimen name="corner_small">8dp</dimen>
 
+    <dimen name="seekbar_track_corner_radius">4dp</dimen>
+    <dimen name="seekbar_thumb_height">30dp</dimen>
+
     <dimen name="card_elevation">2dp</dimen>
 
     <dimen name="header_height">220dp</dimen>

@@ -11,6 +11,8 @@
     <string name="recipe_image">Изображение рецепта</string>
 
     <string name="title_ingredients">Ингредиенты</string>
+    <string name="title_portions_count">Количество порций</string>
+    <string name="default_portions_count">1</string>
     <string name="title_method">Способ приготовления</string>
 
 </resources>
