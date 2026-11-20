@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.databinding.ItemIngredientBinding
-import java.util.Locale
 
 class IngredientsAdapter(
     private val dataSet: List<Ingredient>
@@ -26,12 +25,8 @@ class IngredientsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataSet[position]
         holder.binding.tvIngredientTitle.text = item.description
-        val calculatedQuantity = item.quantity.toDouble() * quantity
-        val formattedQuantity = if (calculatedQuantity == calculatedQuantity.toLong().toDouble()) {
-            calculatedQuantity.toLong().toString()
-        } else {
-            String.format(Locale.US, "%.1f", calculatedQuantity)
-        }
+        val calculatedQuantity = item.quantity.toBigDecimal() * quantity.toBigDecimal()
+        val formattedQuantity = calculatedQuantity.stripTrailingZeros().toPlainString()
         holder.binding.tvIngredientAmount.text = "$formattedQuantity ${item.unitOfMeasure}"
 
         val resources = holder.itemView.resources
