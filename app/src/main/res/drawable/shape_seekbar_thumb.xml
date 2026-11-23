@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <size
+        android:width="@dimen/spacing_8"
+        android:height="@dimen/seekbar_thumb_height" />
+    <solid android:color="@color/nav_button_categories_color" />
+    <corners android:radius="@dimen/spacing_2" />
+</shape>

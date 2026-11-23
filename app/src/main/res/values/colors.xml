@@ -9,4 +9,5 @@
     <color name="nav_button_categories_color">#525DC0</color>
     <color name="nav_button_favorites_color">#E13E3E</color>
     <color name="nav_button_text_color">#FFFFFF</color>
+    <color name="seekbar_track_color">#A1A9F9</color>
 </resources>
