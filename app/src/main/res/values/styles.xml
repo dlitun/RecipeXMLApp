@@ -47,7 +47,7 @@
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
-    <style name="styleSeekBar">
+    <style name="styleSeekBar" parent="Widget.AppCompat.SeekBar">
         <item name="android:thumb">@drawable/shape_seekbar_thumb</item>
         <item name="android:progressDrawable">@drawable/shape_seekbar_progress</item>
         <item name="android:thumbTint">@null</item>
