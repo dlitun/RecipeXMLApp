@@ -11,11 +11,19 @@
     android:paddingVertical="@dimen/spacing_8">
 
     <TextView
+        android:id="@+id/tvMethodStepNumber"
+        style="@style/StyleRecipeMethodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_2"
+        tools:text="1." />
+
+    <TextView
         android:id="@+id/tvMethodStepText"
         style="@style/StyleRecipeMethodText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        tools:text="1. В глубокой миске смешайте говяжий фарш, лук, чеснок, соль и перец. Разделите фарш на 4 равные части и сформируйте котлеты." />
+        tools:text="В глубокой миске смешайте говяжий фарш, лук, чеснок, соль и перец. Разделите фарш на 4 равные части и сформируйте котлеты." />
 
 </LinearLayout>

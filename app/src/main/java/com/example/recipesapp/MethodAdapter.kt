@@ -21,7 +21,8 @@ class MethodAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.tvMethodStepText.text = "${position + 1}. ${dataSet[position]}"
+        holder.binding.tvMethodStepNumber.text = "${position + 1}."
+        holder.binding.tvMethodStepText.text = dataSet[position]
 
         val resources = holder.itemView.resources
         val topPadding = if (position == 0) {
