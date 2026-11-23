@@ -10,6 +10,8 @@ class IngredientsAdapter(
     private val dataSet: List<Ingredient>
 ) : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
 
+    private var quantity = 1
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: ItemIngredientBinding = ItemIngredientBinding.bind(itemView)
     }
@@ -23,7 +25,9 @@ class IngredientsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataSet[position]
         holder.binding.tvIngredientTitle.text = item.description
-        holder.binding.tvIngredientAmount.text = "${item.quantity} ${item.unitOfMeasure}"
+        val calculatedQuantity = item.quantity.toBigDecimal() * quantity.toBigDecimal()
+        val formattedQuantity = calculatedQuantity.stripTrailingZeros().toPlainString()
+        holder.binding.tvIngredientAmount.text = "$formattedQuantity ${item.unitOfMeasure}"
 
         val resources = holder.itemView.resources
         val topPadding = if (position == 0) {
@@ -43,6 +47,11 @@ class IngredientsAdapter(
             holder.itemView.paddingRight,
             bottomPadding
         )
+    }
+
+    fun updateIngredients(progress: Int) {
+        quantity = progress
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = dataSet.size
