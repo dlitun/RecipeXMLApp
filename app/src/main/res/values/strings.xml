@@ -9,6 +9,8 @@
     <string name="recipes_header_image">Изображение заголовка экрана рецептов</string>
     <string name="category_image">Изображение категории</string>
     <string name="recipe_image">Изображение рецепта</string>
+    <string name="add_to_favorites">Добавить в избранное</string>
+    <string name="remove_from_favorites">Убрать из избранного</string>
 
     <string name="title_ingredients">Ингредиенты</string>
     <string name="title_portions_count">Количество порций</string>

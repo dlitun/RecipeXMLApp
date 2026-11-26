@@ -52,6 +52,20 @@ class RecipeFragment : Fragment() {
         val recipeData = recipe ?: return
         binding.tvHeaderTitle.text = recipeData.title
 
+        var isFavorite = false
+        val favoriteButton = binding.btnToggleFavorite
+        favoriteButton.setImageResource(R.drawable.ic_heart_empty)
+        favoriteButton.setOnClickListener {
+            isFavorite = !isFavorite
+            if (isFavorite) {
+                favoriteButton.setImageResource(R.drawable.ic_heart)
+                favoriteButton.contentDescription = getString(R.string.remove_from_favorites)
+            } else {
+                favoriteButton.setImageResource(R.drawable.ic_heart_empty)
+                favoriteButton.contentDescription = getString(R.string.add_to_favorites)
+            }
+        }
+
         try {
             requireContext().assets.open(recipeData.imageUrl).use { inputStream ->
                 val drawable = Drawable.createFromStream(inputStream, recipeData.imageUrl)
