@@ -1,5 +1,6 @@
 package com.example.recipesapp
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -18,12 +19,16 @@ class RecipeFragment : Fragment() {
 
     companion object {
         const val ARG_RECIPE = "ARG_RECIPE"
+        private const val PREFERENCES_NAME = "recipe_preferences"
+        private const val FAVORITES_KEY = "favorite_recipe_ids"
     }
 
     private var recipe: Recipe? = null
 
     private var _binding: FragmentRecipeBinding? = null
     private val binding get() = _binding ?: error("FragmentRecipeBinding is null")
+    private val preferences
+        get() = requireContext().getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,18 +57,16 @@ class RecipeFragment : Fragment() {
         val recipeData = recipe ?: return
         binding.tvHeaderTitle.text = recipeData.title
 
-        var isFavorite = false
-        val favoriteButton = binding.btnToggleFavorite
-        favoriteButton.setImageResource(R.drawable.ic_heart_empty)
-        favoriteButton.setOnClickListener {
-            isFavorite = !isFavorite
+        val recipeId = recipeData.id.toString()
+        updateFavoriteButton(recipeId in getFavorites())
+        binding.btnToggleFavorite.setOnClickListener {
+            val favorites = getFavorites()
+            val isFavorite = !favorites.remove(recipeId)
             if (isFavorite) {
-                favoriteButton.setImageResource(R.drawable.ic_heart)
-                favoriteButton.contentDescription = getString(R.string.remove_from_favorites)
-            } else {
-                favoriteButton.setImageResource(R.drawable.ic_heart_empty)
-                favoriteButton.contentDescription = getString(R.string.add_to_favorites)
+                favorites.add(recipeId)
             }
+            saveFavorites(favorites)
+            updateFavoriteButton(isFavorite)
         }
 
         try {
@@ -73,6 +76,26 @@ class RecipeFragment : Fragment() {
             }
         } catch (e: Exception) {
             Log.e("RecipeFragment", "Error loading recipe image: ${recipeData.imageUrl}", e)
+        }
+    }
+
+    private fun saveFavorites(favorites: Set<String>) {
+        preferences.edit().putStringSet(FAVORITES_KEY, favorites).apply()
+    }
+
+    private fun getFavorites(): MutableSet<String> {
+        val favorites = preferences.getStringSet(FAVORITES_KEY, null)
+        return if (favorites == null) HashSet() else HashSet(favorites)
+    }
+
+    private fun updateFavoriteButton(isFavorite: Boolean) {
+        val favoriteButton = binding.btnToggleFavorite
+        if (isFavorite) {
+            favoriteButton.setImageResource(R.drawable.ic_heart)
+            favoriteButton.contentDescription = getString(R.string.remove_from_favorites)
+        } else {
+            favoriteButton.setImageResource(R.drawable.ic_heart_empty)
+            favoriteButton.contentDescription = getString(R.string.add_to_favorites)
         }
     }
 
