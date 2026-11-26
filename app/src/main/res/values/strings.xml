@@ -3,6 +3,7 @@
 
     <string name="title_categories">Категории</string>
     <string name="title_favorites">Избранное</string>
+    <string name="favorites_empty">Вы еще не добавили ни одного рецепта в избранное</string>
     <string name="title_recipes">Рецепты</string>
 
     <string name="categories_header_image">Изображение заголовка экрана категорий</string>

@@ -269,6 +269,10 @@ object STUB {
         return if (categoryId == 0) burgerRecipes else emptyList()
     }
 
+    fun getRecipesByIds(ids: Set<Int>): List<Recipe> {
+        return burgerRecipes.filter { recipe -> recipe.id in ids }
+    }
+
     fun getRecipeById(id: Int): Recipe? {
         return burgerRecipes.find { recipe -> recipe.id == id }
     }
